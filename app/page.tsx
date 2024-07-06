@@ -1,5 +1,6 @@
 "use client"
 
+import Header from "@/components/Header";
 import Product from "@/components/Product";
 import { useEffect, useState } from "react";
 
@@ -30,13 +31,16 @@ export default function Home() {
   }, []);
 
   return (
-    <div className="container py-24 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-      {products.map((product) => (
-        <Product 
-          key={product.id}
-          product={product}
-        />
-      ))}
-    </div>
+    <>
+      <Header />
+      <div className="container py-24 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+        {products.map((product) => (
+          <Product 
+            key={product.id}
+            product={product}
+          />
+        ))}
+      </div>
+    </>
   );
 }
