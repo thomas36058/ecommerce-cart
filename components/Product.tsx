@@ -1,4 +1,7 @@
+import { addProductToCart } from '@/redux/cart/action-type';
 import Image from 'next/image';
+
+import { useDispatch } from 'react-redux'
 
 interface ProductProps {
   product: {
@@ -11,6 +14,12 @@ interface ProductProps {
 }
 
 const Product = ({ product }: ProductProps) => {
+  const dispatch = useDispatch();
+
+  const handleProductClick = () => {
+    dispatch(addProductToCart(product))
+  }
+
   return (
     <div className='px-6 pt-6 pb-11 rounded-xl flex flex-col shadow-lg'>
       <div className='flex justify-center'>
@@ -28,7 +37,12 @@ const Product = ({ product }: ProductProps) => {
           <p className='text-sm text-secondary uppercase'>{product.category}</p>
           <p className='font-bold'>${product.price}</p>
         </div>
-        <button className='bg-primary rounded-full w-10 h-10 flex justify-center items-center text-white text-2xl border-2 transition duration-300 hover:bg-transparent hover:border-primary hover:text-primary'>+</button>
+        <button 
+          onClick={handleProductClick} 
+          className='bg-primary rounded-full w-10 h-10 flex justify-center items-center text-white text-2xl border-2 transition duration-300 hover:bg-transparent hover:border-primary hover:text-primary'
+        >
+          +
+        </button>
       </div>
     </div>
   )

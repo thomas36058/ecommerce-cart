@@ -33,7 +33,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <div className="container py-24 grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
+      <div className="container grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
         {products.map((product) => (
           <Product 
             key={product.id}
