@@ -16,6 +16,11 @@ function Cart() {
     return products.reduce((acc: any, curr: any) => acc + curr.quantity, 0)
   }, [products])
 
+  const productsTotalPrice = useMemo(() => {
+    const total = products.reduce((acc: any, curr: any) => acc + curr.price * curr.quantity, 0);
+    return parseFloat(total.toFixed(2));
+  }, [products])
+
   return (
     <div className="container py-4 flex justify-end relative">
       <button onClick={toggleCart}>
@@ -31,11 +36,18 @@ function Cart() {
         </button>
         <div className="p-4">
           <p className="font-bold mb-4 text-2xl">Cart</p>
-          <div className="flex gap-4 flex-col">
-            {products.map((product: any, key : number) => <CartItem key={key} product={product} />)}
-            {/* <p className="font-bold flex justify-between">Total<span className="font-normal">$100</span></p> */}
-          </div>
-          {/* <p>Your cart is empty</p> */}
+          {products.length > 0 ? (
+            <div className="flex gap-4 flex-col">
+              {products.map((product: any) => (
+                <CartItem key={product.id} product={product} />
+              ))}
+              <p className="font-bold flex justify-between">
+                Total<span className="font-normal">${productsTotalPrice}</span>
+              </p>
+            </div>
+          ) : (
+            <p>Your cart is empty</p>
+          )}
         </div>
       </div>
     </div>

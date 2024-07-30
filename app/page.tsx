@@ -16,7 +16,7 @@ export default function Home() {
   const [products, setProducts] = useState<ProductType[]>([])
 
   const fetchProduct = async (): Promise<ProductType[]> => {
-    const response = await fetch('https://fakestoreapi.com/products?limit=12');
+    const response = await fetch('https://fakestoreapi.com/products?limit=18');
     const data = await response.json();
 
     return data;
